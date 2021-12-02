@@ -38,8 +38,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     String selectedItem;
 
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,9 +47,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         pieChart = findViewById(R.id.activity_main_piechart);
 
         setupPieChart();
-        loadPieChartData();
+        //loadPieChartData("Chapter 5");
 
-        Spinner spinner = (Spinner) findViewById(R.id.spinner);
+        Spinner spinner = findViewById(R.id.spinner);
 // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.Chapter, android.R.layout.simple_spinner_item);
@@ -59,28 +57,40 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 // Apply the adapter to the spinner
         spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(this);
 
 
-        TextView tv1 = (TextView)findViewById(R.id.poop);
+        TextView tv1 = (TextView) findViewById(R.id.poop);
         tv1.setText(selectedItem);
 
 
     }
 
-    @Override
-    public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long id) {
-        selectedItem = (String) spinner.getItemAtPosition(pos);
 
+    public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
 
+        //i can call it every fucking where, but i cannot call it here since i am a fucking illiterate at java. fuck java it is a fucking piece of shit with a dumbass name. Who even fucking names their language after fucking coffee? next you will be telling me that some dude named his language fucksshitpissachino since he loves drinking fucking piss.
+        //Java is trash.
+        //ive done it IVE DONE IT IVE DONE ITTTTT!!!!!!!!!!!!! LETS OGOOOOOOOOOO!O!O!O!O -I
+        //im gonna sleep for 10 hours to CELEBRATE!!!! -I
+        //SACRIFICE YOUR NEWBORN FOR I HAVE ACCOMPLISHED THE IMPOSSIBLE -I
+        //int yeetus = pos
+
+        loadPieChartData(pos);
+
+        //pos starts from 0!
+        //Important to note! 0 means 1! 0 MEANS 1!!!!11!
     }
 
-    @Override
+
     public void onNothingSelected(android.widget.AdapterView<?> adapterView) {
-        selectedItem = (String) spinner.getItemAtPosition(1);
+        //selectedItem = (String) spinner.getItemAtPosition(1);
+        loadPieChartData(0);
+
     }
 
 
-    private void setupPieChart() {
+    public void setupPieChart() {
         pieChart.setDrawHoleEnabled(true);
         pieChart.setUsePercentValues(true);
         pieChart.setEntryLabelTextSize(12);
@@ -98,18 +108,253 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
 
-    private void loadPieChartData() {
+    public void loadPieChartData(int chap) {
+
+        //Im not even sure how this steaming pile of sewage is working but it does so i say fuck it
+        //I could beautify it but im too braindead to do it.
+        //TO ANDY: if you wanna further add chapters, just add a new else if statement
+        //heres the chunk of code for further development
+
+        /*
+        else if (chap == NUMBER YOU WANT) {
+            entries.add(new PieEntry(0.1f, "Pass"));
+            entries.add(new PieEntry(0.7f, "Fail"));
+            entries.add(new PieEntry(0.2f, "Not done"));
+            ArrayList<Integer> colors = new ArrayList<>();
+            for (int color : ColorTemplate.MATERIAL_COLORS) {
+                colors.add(color);
+            }
+
+            for (int color : ColorTemplate.VORDIPLOM_COLORS) {
+                colors.add(color);
+            }
+
+            PieDataSet dataSet = new PieDataSet(entries, "Chapters");
+            dataSet.setColors(colors);
+
+            PieData data = new PieData(dataSet);
+            data.setDrawValues(true);
+            data.setValueFormatter(new PercentFormatter(pieChart));
+            data.setValueTextSize(12f);
+            data.setValueTextColor(Color.BLACK);
+
+            pieChart.setData(data);
+            pieChart.invalidate();
+
+            pieChart.animateY(1400, Easing.EaseInOutQuad);
+        }
+
+         */
+
+        //to make it work, just replace NUMBER YOU WANT to the position of spinner
+        // add it before the final else statement and after the if statement.
+        // as you can imagine the whole thing is terribly slow, needlessly heavy, and ugly af
+        // all this could be prevented by using continue/return statements
+        // or you could try switch cases. All of which would be much more maintainable than this carbonara
+        // but im a lazy bastard so its your job now XD
+
 
 
         ArrayList<PieEntry> entries = new ArrayList<>();
 
+        if (chap == 0) {
+            entries.add(new PieEntry(0.3f, "Pass"));
+            entries.add(new PieEntry(0.4f, "Fail"));
+            entries.add(new PieEntry(0.3f, "Not done"));
+            ArrayList<Integer> colors = new ArrayList<>();
+            for (int color : ColorTemplate.MATERIAL_COLORS) {
+                colors.add(color);
+            }
 
-        entries.add(new PieEntry(0.3f, "Pass"));
-        entries.add(new PieEntry(0.4f, "Fail"));
-        entries.add(new PieEntry(0.3f, "Not done"));
+            for (int color : ColorTemplate.VORDIPLOM_COLORS) {
+                colors.add(color);
+            }
+
+            PieDataSet dataSet = new PieDataSet(entries, "Chapters");
+            dataSet.setColors(colors);
+
+            PieData data = new PieData(dataSet);
+            data.setDrawValues(true);
+            data.setValueFormatter(new PercentFormatter(pieChart));
+            data.setValueTextSize(12f);
+            data.setValueTextColor(Color.BLACK);
+
+            pieChart.setData(data);
+            pieChart.invalidate();
+
+            pieChart.animateY(1400, Easing.EaseInOutQuad);
+        } else if (chap == 1) {
+            entries.add(new PieEntry(0.1f, "Pass"));
+            entries.add(new PieEntry(0.8f, "Fail"));
+            entries.add(new PieEntry(0.1f, "Not done"));
+            ArrayList<Integer> colors = new ArrayList<>();
+            for (int color : ColorTemplate.MATERIAL_COLORS) {
+                colors.add(color);
+            }
+
+            for (int color : ColorTemplate.VORDIPLOM_COLORS) {
+                colors.add(color);
+            }
+
+            PieDataSet dataSet = new PieDataSet(entries, "Chapters");
+            dataSet.setColors(colors);
+
+            PieData data = new PieData(dataSet);
+            data.setDrawValues(true);
+            data.setValueFormatter(new PercentFormatter(pieChart));
+            data.setValueTextSize(12f);
+            data.setValueTextColor(Color.BLACK);
+
+            pieChart.setData(data);
+            pieChart.invalidate();
+
+            pieChart.animateY(1400, Easing.EaseInOutQuad);
+        }
+
+        else if (chap == 2) {
+            entries.add(new PieEntry(0.1f, "Pass"));
+            entries.add(new PieEntry(0.9f, "Fail"));
+            entries.add(new PieEntry(0.0f, "Not done"));
+            ArrayList<Integer> colors = new ArrayList<>();
+            for (int color : ColorTemplate.MATERIAL_COLORS) {
+                colors.add(color);
+            }
+
+            for (int color : ColorTemplate.VORDIPLOM_COLORS) {
+                colors.add(color);
+            }
+
+            PieDataSet dataSet = new PieDataSet(entries, "Chapters");
+            dataSet.setColors(colors);
+
+            PieData data = new PieData(dataSet);
+            data.setDrawValues(true);
+            data.setValueFormatter(new PercentFormatter(pieChart));
+            data.setValueTextSize(12f);
+            data.setValueTextColor(Color.BLACK);
+
+            pieChart.setData(data);
+            pieChart.invalidate();
+
+            pieChart.animateY(1400, Easing.EaseInOutQuad);
+        }
+
+        else if (chap == 3) {
+            entries.add(new PieEntry(0.3f, "Pass"));
+            entries.add(new PieEntry(0.5f, "Fail"));
+            entries.add(new PieEntry(0.2f, "Not done"));
+            ArrayList<Integer> colors = new ArrayList<>();
+            for (int color : ColorTemplate.MATERIAL_COLORS) {
+                colors.add(color);
+            }
+
+            for (int color : ColorTemplate.VORDIPLOM_COLORS) {
+                colors.add(color);
+            }
+
+            PieDataSet dataSet = new PieDataSet(entries, "Chapters");
+            dataSet.setColors(colors);
+
+            PieData data = new PieData(dataSet);
+            data.setDrawValues(true);
+            data.setValueFormatter(new PercentFormatter(pieChart));
+            data.setValueTextSize(12f);
+            data.setValueTextColor(Color.BLACK);
+
+            pieChart.setData(data);
+            pieChart.invalidate();
+
+            pieChart.animateY(1400, Easing.EaseInOutQuad);
+        }
+        else if (chap == 4) {
+            entries.add(new PieEntry(0.2f, "Pass"));
+            entries.add(new PieEntry(0.7f, "Fail"));
+            entries.add(new PieEntry(0.1f, "Not done"));
+            ArrayList<Integer> colors = new ArrayList<>();
+            for (int color : ColorTemplate.MATERIAL_COLORS) {
+                colors.add(color);
+            }
+
+            for (int color : ColorTemplate.VORDIPLOM_COLORS) {
+                colors.add(color);
+            }
+
+            PieDataSet dataSet = new PieDataSet(entries, "Chapters");
+            dataSet.setColors(colors);
+
+            PieData data = new PieData(dataSet);
+            data.setDrawValues(true);
+            data.setValueFormatter(new PercentFormatter(pieChart));
+            data.setValueTextSize(12f);
+            data.setValueTextColor(Color.BLACK);
+
+            pieChart.setData(data);
+            pieChart.invalidate();
+
+            pieChart.animateY(1400, Easing.EaseInOutQuad);
+        }
+
+        else if (chap == 5) {
+            entries.add(new PieEntry(0.3f, "Pass"));
+            entries.add(new PieEntry(0.4f, "Fail"));
+            entries.add(new PieEntry(0.3f, "Not done"));
+            ArrayList<Integer> colors = new ArrayList<>();
+            for (int color : ColorTemplate.MATERIAL_COLORS) {
+                colors.add(color);
+            }
+
+            for (int color : ColorTemplate.VORDIPLOM_COLORS) {
+                colors.add(color);
+            }
+
+            PieDataSet dataSet = new PieDataSet(entries, "Chapters");
+            dataSet.setColors(colors);
+
+            PieData data = new PieData(dataSet);
+            data.setDrawValues(true);
+            data.setValueFormatter(new PercentFormatter(pieChart));
+            data.setValueTextSize(12f);
+            data.setValueTextColor(Color.BLACK);
+
+            pieChart.setData(data);
+            pieChart.invalidate();
+
+            pieChart.animateY(1400, Easing.EaseInOutQuad);
+        }
 
 
-        ArrayList<Integer> colors = new ArrayList<>();
+        else {
+            entries.add(new PieEntry(0.2f, "Pass"));
+            entries.add(new PieEntry(0.3f, "Fail"));
+            entries.add(new PieEntry(0.5f, "Not done"));
+            ArrayList<Integer> colors = new ArrayList<>();
+            for (int color : ColorTemplate.MATERIAL_COLORS) {
+                colors.add(color);
+            }
+
+            for (int color : ColorTemplate.VORDIPLOM_COLORS) {
+                colors.add(color);
+            }
+
+            PieDataSet dataSet = new PieDataSet(entries, "Chapters");
+            dataSet.setColors(colors);
+
+            PieData data = new PieData(dataSet);
+            data.setDrawValues(true);
+            data.setValueFormatter(new PercentFormatter(pieChart));
+            data.setValueTextSize(12f);
+            data.setValueTextColor(Color.BLACK);
+
+            pieChart.setData(data);
+            pieChart.invalidate();
+
+            pieChart.animateY(1400, Easing.EaseInOutQuad);
+        }
+
+
+
+
+        /*ArrayList<Integer> colors = new ArrayList<>();
         for (int color : ColorTemplate.MATERIAL_COLORS) {
             colors.add(color);
         }
@@ -131,10 +376,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         pieChart.invalidate();
 
         pieChart.animateY(1400, Easing.EaseInOutQuad);
+
+         */
     }
-
-
 }
+
+
 
 
 
